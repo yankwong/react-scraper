@@ -1,16 +1,17 @@
 import React from 'react';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 const Navbar = props => {
   return (
     <nav className="navbar navbar-light bg-faded">
-      <a className="navbar-brand" href="#">React Scrapper</a>
+      <Link to="/" className="navbar-brand">React Scrapper</Link>
 
       <ul className="nav">
         <li className="nav-item">
-          <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+          <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">Saved Articles</a>
+          <Link className="nav-link" to="/saved">Saved Articles</Link>
         </li>
         <li className="nav-item">
           <button className="btn btn-primary scrapeBtn">Scrape New Articles!</button>
