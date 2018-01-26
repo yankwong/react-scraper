@@ -55,10 +55,20 @@ class App extends Component {
     return (
       <div>
         <Navbar />
-        <Jumbotron />
-        <Form doSubmit={(query) => this.handleSubmit(query)} />
-        <Articleslist articles={this.state.articles} 
-                      onSave={(articleObj) => this.saveArticle(articleObj)}/>
+        <Jumbotron classes="main-jumbotron"/>
+        <div className="row">
+          <div className="col-sm-12">
+            <div className="panel panel-primary">
+              <Form doSubmit={(query) => this.handleSubmit(query)} />
+            </div>
+          </div>
+        </div>  
+        <div className="row">
+          <div className="col-sm-12">
+            <Articleslist articles={this.state.articles} 
+                          onSave={(articleObj) => this.saveArticle(articleObj)}/>
+          </div>                
+        </div>  
       </div>
     );
   }

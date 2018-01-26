@@ -8,8 +8,11 @@ const apiRoutes = require("./routes/apiRoutes");
 // Serve up static assets
 app.use(express.static("client/build"));
 
+// app.use(express.static(path.join(__dirname, 'public')));
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
+
 
 // parse application/json
 app.use(bodyParser.json());
