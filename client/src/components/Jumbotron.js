@@ -3,10 +3,9 @@ import React from 'react';
 const Jumbotron = props => {
   return (
     <div className="jumbotron jumbotron-fluid">
-      <div className="container">
-        <h1 className="display-4">React Scraper</h1>
-        <p className="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-      </div>
+      <h1 className="text-center">
+        <strong><i className="fa fa-newspaper-o"></i> New York Times Search</strong>
+      </h1>
     </div>
   );
 }
