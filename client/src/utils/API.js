@@ -12,6 +12,15 @@ export default {
   saveArticle: function(articleObj) {
     console.log('API: axios doing POST', articleObj);
     return axios.post('/api/articles', articleObj);
+  },
+
+  getSavedArticles: function() {
+    console.log('API: getting saved articles');
+    return axios.get('/api/articles');
+  },
+
+  deleteSavedArticle: function(id) {
+    return axios.post(`/api/delete-article/${id}`);
   }
 
 };

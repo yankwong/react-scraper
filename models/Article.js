@@ -11,6 +11,10 @@ var ArticleSchema = new Schema({
     type: String,
     required: true
   },
+  teaser: {
+    type: String,
+    required: false
+  },
   date: {
     type: Date,
     required: true

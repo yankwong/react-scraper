@@ -1,33 +1,52 @@
 // const axios = require("axios");
 const router  = require("express").Router();
 const DB      = require('../modules/db.js');
+const Article = require('../models/Article');
 
-// router.get("/recipes", (req, res) => {
-//   axios
-//     .get("http://www.recipepuppy.com/api/", { params: req.query })
-//     .then(({ data: { results } }) => res.json(results))
-//     .catch(err => res.status(422).json(err));
-// });
 
-router.get('/api/articles', (req, res) => {
-  console.log('GET API')
+router.get('/health-check', (req, res) => {
+  res.json({
+    message: 'Everything is good'
+  })
+});
+
+
+router.get('/articles', (req, res) => {
+  Article.find({}, function(err, docs) {
+    if (!err) {
+      res.json(docs);
+    }
+    else {
+      throw err;
+    }
+  });
 });
 
 // save an article to mongo
-router.post('/api/articles', (req, res) => {
-  console.log('from API: ', req, res);
-  // Article.create({
-  //   title : 'test',
-  //   date : '2010-12-12',
-  //   url : 'google.com'
-  // })
-  // .then(function() {
-    
-  // })
+router.post('/articles', (req, res) => {
+  Article.create({
+    title : req.body.title,
+    date  : req.body.date,
+    teaser : req.body.teaser,
+    url : req.body.url
+  })
+  .then(function() {
+    res.status(200);
+  })
 });
 
-router.delete('/api/articles', (req, res) => {
-
+router.post('/delete-article/:aid', (req, res) => {
+  Article.findByIdAndRemove(req.params.aid, function (err, todo) {
+    if (err) {
+      // Send Failure Header
+      console.log(err);      
+      res.sendStatus(400);
+    } 
+    else {
+      console.log('successfully deleted!');
+      res.sendStatus(200);
+    }
+  });
 });
 
 module.exports = router;

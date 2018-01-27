@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import Navbar from './components/Navbar';
-import Jumbotron from './components/Jumbotron';
 import Form from './components/Form';
 import Articleslist from './components/Articleslist';
 import API from './utils/API.js';
@@ -26,11 +24,13 @@ class App extends Component {
       res.data.response.docs.map(element => {
         let title  = element.headline.main,
             teaser = element.snippet,
-            url    = element.web_url;
+            url    = element.web_url,
+            date   = element.pub_date;
 
-        resultArticles.push({title: title, teaser : teaser, url : url})
+        resultArticles.push({title: title, teaser : teaser, url : url, date : date})
       });
 
+      console.log('hey', resultArticles);
       this.setState({articles : resultArticles});
     })
     .catch(err => console.log(err));
@@ -53,9 +53,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Navbar />
-        <Jumbotron classes="main-jumbotron"/>
+      <div className="container">
         <div className="row">
           <div className="col-sm-12">
             <div className="panel panel-primary">
